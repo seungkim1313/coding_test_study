@@ -13,7 +13,7 @@ Output: 2
 """
 from collections import Counter
 
-def find_duplicate(nums):
+def find_duplicate1(nums):
     answer = None
 
     answer, size = Counter(nums).most_common(1)[0]
@@ -22,5 +22,22 @@ def find_duplicate(nums):
 
 nums=[3,1,3,4,2]
 
-a = find_duplicate(nums)
-print(a)
+
+def find_duplicate2(nums):
+    tmp = set()
+    for n in nums:
+        if n in tmp:
+            return n
+        tmp.add(n)
+
+import timeit
+
+start = timeit.default_timer()
+a = find_duplicate1(nums)
+stop = timeit.default_timer()
+print(stop-start)
+
+start = timeit.default_timer()
+a = find_duplicate2(nums)
+stop = timeit.default_timer()
+print(stop-start)
